@@ -1,0 +1,161 @@
+{
+  "brand_identity": {
+    "name": "PlacementAI",
+    "tone": "Professional, Futuristic, Trustworthy, Efficient",
+    "archetype": "Swiss High-Contrast + Glassmorphism",
+    "mission": "Connecting talent with opportunity through AI precision."
+  },
+  "theme": {
+    "mode": "light",
+    "strategy": "Glassmorphism over Soft Gradient Mesh",
+    "background_gradient": "bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50",
+    "glass_card_style": "bg-white/60 backdrop-blur-xl border border-white/40 shadow-xl shadow-blue-900/5 rounded-2xl"
+  },
+  "typography": {
+    "headings": {
+      "family": "Plus Jakarta Sans, sans-serif",
+      "weights": ["600", "700", "800"],
+      "usage": "Use for all page titles, section headers, and card titles."
+    },
+    "body": {
+      "family": "Inter, sans-serif",
+      "weights": ["400", "500"],
+      "usage": "Use for all paragraphs, labels, and table data."
+    },
+    "scale": {
+      "h1": "text-5xl md:text-6xl font-bold tracking-tight",
+      "h2": "text-3xl md:text-4xl font-bold tracking-tight",
+      "h3": "text-xl md:text-2xl font-semibold",
+      "body": "text-base leading-relaxed text-slate-600"
+    }
+  },
+  "colors": {
+    "primary": {
+      "name": "Royal Blue",
+      "hex": "#2563EB",
+      "tailwind": "blue-600",
+      "usage": "Primary buttons, active states, key highlights"
+    },
+    "secondary": {
+      "name": "Electric Violet",
+      "hex": "#7C3AED",
+      "tailwind": "violet-600",
+      "usage": "Gradients, secondary actions, AI badges"
+    },
+    "accent": {
+      "name": "Success Teal",
+      "hex": "#0D9488",
+      "tailwind": "teal-600",
+      "usage": "High match scores, success toasts, verified badges"
+    },
+    "neutral": {
+      "surface": "#FFFFFF",
+      "text_primary": "#0F172A",
+      "text_secondary": "#475569",
+      "border": "#E2E8F0"
+    },
+    "gradients": {
+      "primary_action": "bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white shadow-lg shadow-blue-500/25",
+      "glass_surface": "bg-white/40 backdrop-blur-md border border-white/50"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "h-11 px-8 rounded-full bg-blue-600 text-white font-medium transition-all hover:scale-105 hover:shadow-lg hover:shadow-blue-500/30 active:scale-95",
+      "glass": "h-11 px-8 rounded-full bg-white/50 backdrop-blur-md border border-white/60 text-slate-800 font-medium transition-all hover:bg-white/80 hover:shadow-md",
+      "ghost": "hover:bg-slate-100/50 hover:text-blue-600"
+    },
+    "cards": {
+      "default": "bg-white/70 backdrop-blur-xl border border-white/60 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300",
+      "interactive": "group relative overflow-hidden bg-white/40 backdrop-blur-lg border border-white/50 rounded-2xl hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300",
+      "dashboard_widget": "bg-white/80 backdrop-blur-md border border-slate-100 rounded-xl shadow-sm p-6 h-full flex flex-col"
+    },
+    "inputs": {
+      "style": "h-11 bg-white/50 backdrop-blur-sm border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 rounded-xl transition-all"
+    },
+    "charts": {
+      "library": "recharts",
+      "theme": {
+        "grid": "stroke-slate-100",
+        "tooltip": "bg-white/90 backdrop-blur-md border-slate-100 shadow-xl rounded-lg text-slate-700",
+        "colors": ["#2563EB", "#7C3AED", "#0D9488", "#F59E0B"]
+      }
+    }
+  },
+  "layout_strategies": {
+    "landing_page": {
+      "type": "bento_grid",
+      "structure": "Grid of glass cards with varying spans. Hero section uses large typography with 3D/abstract imagery.",
+      "hero_section": "Split layout: Left text (H1 + CTA), Right 3D/Image. Background: Animated gradient mesh."
+    },
+    "dashboard": {
+      "type": "high_density_glass",
+      "structure": "Sidebar navigation (glass strip). Main content area with grid of widgets. Gap-6 spacing to let background breathe.",
+      "widgets": "Stats cards (top), Charts (middle), Recent Activity lists (bottom)."
+    }
+  },
+  "motion": {
+    "library": "framer-motion",
+    "page_transition": {
+      "initial": { "opacity": 0, "y": 20 },
+      "animate": { "opacity": 1, "y": 0 },
+      "exit": { "opacity": 0, "y": -20 },
+      "transition": { "duration": 0.4, "ease": "easeOut" }
+    },
+    "hover_effects": {
+      "card_lift": { "scale": 1.02, "transition": { "type": "spring", "stiffness": 400, "damping": 17 } }
+    }
+  },
+  "visual_enhancers": {
+    "glass_glow": "absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none",
+    "noise_texture": "Use a subtle SVG noise overlay at 2% opacity on the main background to reduce banding."
+  },
+  "assets": {
+    "images": [
+      {
+        "category": "hero_student",
+        "url": "https://images.unsplash.com/photo-1728511840262-549724e5149a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDV8MHwxfHNlYXJjaHw0fHxjb2xsZWdlJTIwc3R1ZGVudHMlMjBwcm9mZXNzaW9uYWwlMjBwbGFjZW1lbnQlMjBzdWNjZXNzfGVufDB8fHx8MTc3MTc1ODU0M3ww&ixlib=rb-4.1.0&q=85",
+        "description": "Graduation student symbolizing success and hope"
+      },
+      {
+        "category": "feature_recruiter",
+        "url": "https://images.unsplash.com/photo-1758520144427-ddb02ac74e9d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjByZWNydWl0ZXIlMjBtZWV0aW5nfGVufDB8fHx8MTc3MTc1ODU0NHww&ixlib=rb-4.1.0&q=85",
+        "description": "Professional handshake or meeting"
+      },
+      {
+        "category": "ai_tech_abstract",
+        "url": "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Abstract network nodes representing AI matching"
+      },
+      {
+        "category": "logo_openai",
+        "url": "https://images.pexels.com/photos/15863044/pexels-photo-15863044.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Partner company logo placeholder 1"
+      },
+      {
+        "category": "logo_nvidia",
+        "url": "https://images.pexels.com/photos/30608593/pexels-photo-30608593.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Partner company logo placeholder 2"
+      }
+    ],
+    "icons_library": "lucide-react"
+  },
+  "universal_guidelines": [
+    "NEVER use default Tailwind blue-500. Use custom brand colors.",
+    "Glassmorphism requires a busy or gradient background to work. Never put glass on plain white.",
+    "Text inside glass cards must be high contrast (Slate-800 or Slate-900).",
+    "All interactive elements must have a data-testid attribute.",
+    "Use 'sonner' for all toast notifications.",
+    "Do not use generic 'Inter' for headings. Use 'Plus Jakarta Sans'.",
+    "Ensure charts use the brand palette (Blue, Violet, Teal).",
+    "Add 'backdrop-blur-xl' to all overlays and sticky headers.",
+    "For file uploads, use a dashed border dropzone with a subtle bounce animation on hover."
+  ],
+  "instructions_to_main_agent": {
+    "step_1": "Install 'lucide-react', 'recharts', 'framer-motion', 'clsx', 'tailwind-merge' if not present.",
+    "step_2": "Update tailwind.config.js with brand colors and fonts.",
+    "step_3": "Create a reusable 'GlassCard' component.",
+    "step_4": "Implement the Layout wrapper with the gradient mesh background.",
+    "step_5": "Build pages using the specified Grid Layouts (Bento for Home, Dense for Dashboard)."
+  }
+}
