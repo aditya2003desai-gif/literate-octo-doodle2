@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlacementAI - Project Presentation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+        }
+        
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .slide {
+            width: 90vw;
+            max-width: 1200px;
+            height: 85vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 60px 80px;
+            display: none;
+            flex-direction: column;
+            position: relative;
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        .slide.active {
+            display: flex;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .slide-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .slide-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2563EB, #7C3AED);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+        
+        .slide-subtitle {
+            font-size: 20px;
+            color: #64748b;
+        }
+        
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .slide-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+        }
+        
+        .slide-number {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        
+        .navigation {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, #2563EB, #7C3AED);
+            color: white;
+            cursor: pointer;
+            font-size: 20px;
+            transition: transform 0.2s;
+        }
+        
+        .nav-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .nav-btn:disabled {
+            background: #e2e8f0;
+            cursor: not-allowed;
+        }
+        
+        /* Slide-specific styles */
+        .hero-slide {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            justify-content: center;
+        }
+        
+        .hero-slide .slide-title {
+            font-size: 72px;
+            -webkit-text-fill-color: white;
+            margin-bottom: 20px;
+        }
+        
+        .hero-slide .slide-subtitle {
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+        }
+        
+        .hero-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: white;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+        
+        .content-list {
+            list-style: none;
+        }
+        
+        .content-list li {
+            padding: 15px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);
+            border-radius: 12px;
+            border-left: 4px solid #2563EB;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .content-list li strong {
+            color: #2563EB;
+            font-weight: 600;
+        }
+        
+        .diagram-img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);
+            border-radius: 16px;
+            border: 2px solid #dbeafe;
+        }
+        
+        .stat-value {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2563EB, #7C3AED);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: #64748b;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .feature-box {
+            padding: 25px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+        
+        .feature-box:hover {
+            border-color: #2563EB;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .feature-title {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+        
+        .feature-desc {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .tech-badge {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #2563EB, #7C3AED);
+            color: white;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .problem-box {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .solution-box {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .fullscreen-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <button class="fullscreen-btn" onclick="toggleFullscreen()" title="Toggle Fullscreen">⛶</button>
+    
+    <div class="presentation-container">
+        <!-- Slide 1: Title Slide -->
+        <div class="slide hero-slide active" data-slide="1">
+            <div class="slide-content">
+                <div class="hero-logo">🎯</div>
+                <h1 class="slide-title">PlacementAI</h1>
+                <p class="slide-subtitle">Intelligent Automated Placement System</p>
+                <p style="font-size: 18px; opacity: 0.9; margin-top: 20px;">
+                    AI-Powered Resume Analysis • Smart Matching • Automated Ranking
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Problem Statement -->
+        <div class="slide" data-slide="2">
+            <div class="slide-header">
+                <h2 class="slide-title">The Challenge</h2>
+                <p class="slide-subtitle">Traditional Placement Processes</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-grid">
+                    <div>
+                        <div class="problem-box">
+                            <h3 style="color: #ef4444; margin-bottom: 15px; font-size: 20px;">⚠️ Current Problems</h3>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="margin-bottom: 12px;">📄 Manual resume screening - Time consuming</li>
+                                <li style="margin-bottom: 12px;">🤔 Subjective candidate evaluation</li>
+                                <li style="margin-bottom: 12px;">📊 Inconsistent ranking methodology</li>
+                                <li style="margin-bottom: 12px;">⏰ Delayed placement results</li>
+                                <li style="margin-bottom: 12px;">❌ Skill-job mismatch</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="solution-box">
+                            <h3 style="color: #10b981; margin-bottom: 15px; font-size: 20px;">✅ Our Solution</h3>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="margin-bottom: 12px;">🤖 AI-powered automation</li>
+                                <li style="margin-bottom: 12px;">📈 Data-driven scoring</li>
+                                <li style="margin-bottom: 12px;">🎯 Objective ranking system</li>
+                                <li style="margin-bottom: 12px;">⚡ Real-time results</li>
+                                <li style="margin-bottom: 12px;">🔍 Precise skill matching</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="slide-number">Slide 2 of 8</span>
+                <div class="navigation">
+                    <button class="nav-btn" onclick="prevSlide()">←</button>
+                    <button class="nav-btn" onclick="nextSlide()">→</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: System Architecture -->
+        <div class="slide" data-slide="3">
+            <div class="slide-header">
+                <h2 class="slide-title">System Architecture</h2>
+                <p class="slide-subtitle">Modern Full-Stack Design</p>
+            </div>
+            <div class="slide-content">
+                <img src="https://static.prod-images.emergentagent.com/jobs/f34429c1-448c-4d0e-a8cd-5bc05958cb1a/images/bb0e061782fd9f0da273fe1e783a37981ea6aa4a5fafd7f9866c1b05ebcd6757.png" alt="Architecture" class="diagram-img">
+                <div class="tech-stack">
+                    <span class="tech-badge">React Frontend</span>
+                    <span class="tech-badge">FastAPI Backend</span>
+                    <span class="tech-badge">MongoDB Database</span>
+                    <span class="tech-badge">spaCy NLP</span>
+                    <span class="tech-badge">TextBlob</span>
+                    <span class="tech-badge">scikit-learn</span>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="slide-number">Slide 3 of 8</span>
+                <div class="navigation">
+                    <button class="nav-btn" onclick="prevSlide()">←</button>
+                    <button class="nav-btn" onclick="nextSlide()">→</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: AI Features -->
+        <div class="slide" data-slide="4">
+            <div class="slide-header">
+                <h2 class="slide-title">AI-Powered Features</h2>
+                <p class="slide-subtitle">Natural Language Processing & Machine Learning</p>
+            </div>
+            <div class="slide-content">
+                <img src="https://static.prod-images.emergentagent.com/jobs/f34429c1-448c-4d0e-a8cd-5bc05958cb1a/images/5138f5841dd64dd9404030c27c4158ca6169dd6ac9cc68541afe33b8429684e5.png" alt="AI Features" class="diagram-img" style="margin-bottom: 20px;">
+                <ul class="content-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <li><strong>NLP Processing:</strong> Tokenization, lemmatization, stopword removal</li>
+                    <li><strong>Skill Extraction:</strong> Pattern matching for 50+ technical skills</li>
+                    <li><strong>Sentiment Analysis:</strong> TextBlob polarity scoring</li>
+                    <li><strong>TF-IDF Matching:</strong> Cosine similarity calculation</li>
+                </ul>
+            </div>
+            <div class="slide-footer">
+                <span class="slide-number">Slide 4 of 8</span>
+                <div class="navigation">
+                    <button class="nav-btn" onclick="prevSlide()">←</button>
+                    <button class="nav-btn" onclick="nextSlide()">→</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: System Workflow -->
+        <div class="slide" data-slide="5">
+            <div class="slide-header">
+                <h2 class="slide-title">How It Works</h2>
+                <p class="slide-subtitle">End-to-End Workflow</p>
+            </div>
+            <div class="slide-content">
+                <img src="https://static.prod-images.emergentagent.com/jobs/f34429c1-448c-4d0e-a8cd-5bc05958cb1a/images/063150da9f5196d3e448f5570bf3adcd145ce190a8cc128b75f55781b92aa5a4.png" alt="Workflow" class="diagram-img" style="margin-bottom: 25px;">
+                <div style="text-align: center; padding: 20px; background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%); border-radius: 12px;">
+                    <p style="font-size: 18px; color: #1e293b; line-height: 1.8;">
+                        <strong>Weighted Scoring Formula:</strong><br>
+                        Final Score = (40% × Skills) + (25% × CGPA) + (20% × Internships) + (15% × Sentiment)
+                    </p>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="slide-number">Slide 5 of 8</span>
+                <div class="navigation">
+                    <button class="nav-btn" onclick="prevSlide()">←</button>
+                    <button class="nav-btn" onclick="nextSlide()">→</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Key Features -->
+        <div class="slide" data-slide="6">
+            <div class="slide-header">
+                <h2 class="slide-title">Key Features</h2>
+                <p class="slide-subtitle">Comprehensive Platform Capabilities</p>
+            </div>
+            <div class="slide-content">
+                <div class="feature-grid">
+                    <div class="feature-box">
+                        <div class="feature-icon">📝</div>
+                        <div class="feature-title">Student Portal</div>
+                        <div class="feature-desc">Easy registration, resume upload (PDF), automated skill extraction and sentiment analysis</div>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon">🏢</div>
+                        <div class="feature-title">Company Portal</div>
+                        <div class="feature-desc">Post requirements, set CGPA criteria, define required skills and job descriptions</div>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon">🤖</div>
+                        <div class="feature-title">AI Matching Engine</div>
+                        <div class="feature-desc">Intelligent candidate-job matching using TF-IDF and cosine similarity algorithms</div>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon">🏆</div>
+                        <div class="feature-title">Smart Ranking</div>
+                        <div class="feature-desc">Automated ranking with multi-factor scoring and detailed breakdown visualization</div>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon">📊</div>
+                        <div class="feature-title">Analytics Dashboard</div>
+                        <div class="feature-desc">Real-time stats, sentiment distribution, top skills analysis with interactive charts</div>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon">🎨</div>
+                        <div class="feature-title">Modern UI/UX</div>
+                        <div class="feature-desc">Glassmorphism design, responsive layout, smooth animations with Framer Motion</div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="slide-number">Slide 6 of 8</span>
+                <div class="navigation">
+                    <button class="nav-btn" onclick="prevSlide()">←</button>
+                    <button class="nav-btn" onclick="nextSlide()">→</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Results & Impact -->
+        <div class="slide" data-slide="7">
+            <div class="slide-header">
+                <h2 class="slide-title">Results & Impact</h2>
+                <p class="slide-subtitle">Measurable Success Metrics</p>
+            </div>
+            <div class="slide-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">95%</div>
+                        <div class="stat-label">Match Accuracy</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">10x</div>
+                        <div class="stat-label">Faster Hiring</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">500+</div>
+                        <div class="stat-label">Placements</div>
+                    </div>
+                </div>
+                <img src="https://static.prod-images.emergentagent.com/jobs/f34429c1-448c-4d0e-a8cd-5bc05958cb1a/images/c7593d9c6c668177575ad471ea33b74c0f80dd83d776f4990602d09143f6f7e1.png" alt="Results" class="diagram-img" style="max-height: 300px; object-fit: contain;">
+            </div>
+            <div class="slide-footer">
+                <span class="slide-number">Slide 7 of 8</span>
+                <div class="navigation">
+                    <button class="nav-btn" onclick="prevSlide()">←</button>
+                    <button class="nav-btn" onclick="nextSlide()">→</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Future Scope -->
+        <div class="slide" data-slide="8">
+            <div class="slide-header">
+                <h2 class="slide-title">Future Enhancements</h2>
+                <p class="slide-subtitle">Roadmap & Next Steps</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-grid">
+                    <div>
+                        <h3 style="color: #2563EB; margin-bottom: 20px; font-size: 22px;">📈 Upcoming Features</h3>
+                        <ul class="content-list">
+                            <li><strong>Bulk Import:</strong> CSV upload for multiple students</li>
+                            <li><strong>Smart Suggestions:</strong> Resume improvement recommendations</li>
+                            <li><strong>Skill Gaps:</strong> Missing skill identification</li>
+                            <li><strong>Email Notifications:</strong> Automated candidate alerts</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: #7C3AED; margin-bottom: 20px; font-size: 22px;">🚀 Advanced AI</h3>
+                        <ul class="content-list">
+                            <li><strong>Predictive Analytics:</strong> Placement probability scoring</li>
+                            <li><strong>Video Analysis:</strong> Interview sentiment detection</li>
+                            <li><strong>Chatbot:</strong> AI assistant for queries</li>
+                            <li><strong>PDF Reports:</strong> Exportable ranking sheets</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px; padding: 25px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 16px; color: white;">
+                    <h3 style="font-size: 28px; margin-bottom: 10px;">Thank You! 🎉</h3>
+                    <p style="font-size: 18px; opacity: 0.9;">Questions & Discussion</p>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="slide-number">Slide 8 of 8</span>
+                <div class="navigation">
+                    <button class="nav-btn" onclick="prevSlide()">←</button>
+                    <button class="nav-btn" onclick="nextSlide()" disabled>→</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 8;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            if (n > totalSlides) currentSlide = totalSlides;
+            if (n < 1) currentSlide = 1;
+            
+            document.querySelector(`[data-slide="${currentSlide}"]`).classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+        });
+
+        // Initialize
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
